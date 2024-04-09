@@ -21,6 +21,19 @@ pipeline {
                 '''
             }
         }
+
+        stage('Postgres DB images') {
+            steps {
+                sh 'docker build -t postgresdb db/'
+            }
+        }
+
+        stage('Django app image') {
+            steps {
+                sh 'docker build -t django-app .'
+            }
+        }
+
     }
     
 }
