@@ -34,6 +34,11 @@ pipeline {
                 sh 'docker build -t django-app .'
             }
         }
+        stage('Docker image') {
+            steps {
+                sh 'docker images -a'
+            }
+        }
 
     }
     
