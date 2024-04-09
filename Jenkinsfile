@@ -22,7 +22,7 @@ pipeline {
             }
         }
 
-        stage('Postgres DB images') {
+        stage('docker compose') {
             steps {
                 sh 'docker-compose up --build'
             }
@@ -39,6 +39,5 @@ pipeline {
                 sh 'docker ps -a'
             }
         }
-    }
-    
+    } 
 }
