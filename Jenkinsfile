@@ -41,7 +41,7 @@ pipeline {
 
         stage('Docker network') {
             steps {
-                sh 'docker create network web-network'
+                sh 'docker network create web-network'
             }
         }
 
