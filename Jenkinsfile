@@ -24,7 +24,7 @@ pipeline {
 
         stage('Docker compose') {
             steps {
-                sh 'docker-compose up --build -d'
+                sh 'docker compose up --build -d'
             }
         }
 
@@ -42,7 +42,7 @@ pipeline {
 
         stage('Deleting containers & images') {
             steps {
-                sh 'docker-compose down'
+                sh 'docker compose down'
                 sh 'docker system prune -af'
                 sh 'docker ps -a'
                 sh 'docker images -a'
@@ -61,8 +61,20 @@ pipeline {
                 sh '''
                     ssh -T aswinvilasp@192.168.1.242 <<EOF
                         cd /home/aswinvilasp/DevOps/jenkins
-                        docker-compose up --build -d
+                        docker compose up --build -d
                         exit
+                    EOF
+                ''' 
+            }
+        }
+
+        stage('Tagging & pushing to dockerhub') {
+            steps {
+                sh '''
+                    ssh -T aswinvilasp@192.168.1.242 <<EOF
+                    cd /home/aswinvilasp/DevOps/jenkins
+                    ./tag.sh
+                    exit
                     EOF
                 ''' 
             }
