@@ -51,6 +51,7 @@ pipeline {
 
         stage('exporting Artifact') {
             steps {
+                sh 'ssh aswinvilasp@192.168.1.242 "rm -rf /home/aswinvilasp/DevOps/jenkins/*"'
                 sh 'scp -r ${WORKSPACE}/* aswinvilasp@192.168.1.242:/home/aswinvilasp/DevOps/jenkins'
             }
         }
