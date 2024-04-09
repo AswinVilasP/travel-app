@@ -73,6 +73,7 @@ pipeline {
                 sh '''
                     ssh -T aswinvilasp@192.168.1.242 <<EOF
                     cd /home/aswinvilasp/DevOps/jenkins
+                    chmod +x tag.sh
                     ./tag.sh
                     exit
                     EOF
