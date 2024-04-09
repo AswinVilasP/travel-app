@@ -43,9 +43,27 @@ pipeline {
         stage('Deleting containers & images') {
             steps {
                 sh 'docker-compose down'
-                sh 'docker system prune -a'
+                sh 'docker system prune -af'
                 sh 'docker ps -a'
                 sh 'docker images -a'
+            }
+        }
+
+        stage('exporting Artifact') {
+            steps {
+                sh 'scp -r {WORKSPACE} aswinvilasp@192.168.1.242:/home/aswinvilasp/DevOps/jenkins'
+            }
+        }
+
+        stage('SSH Commands execution') {
+            steps {
+                sh '''
+                    ssh -T aswinvilasp@192.168.1.242 <<EOF
+                        cd /home/aswinvilasp/DevOps/jenkins
+                        docker-compose up --build -d
+                        exit
+                    EOF
+                ''' 
             }
         }
     } 
