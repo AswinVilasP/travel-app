@@ -8,9 +8,8 @@ pipeline {
                 checkout scm
             }
         }
-    }
 
-    stage('Setup Environment') {
+        stage('Setup Environment') {
             steps {
                 // Create a virtual environment if it doesn't exist and install dependencies
                 sh '''
@@ -22,4 +21,6 @@ pipeline {
                 '''
             }
         }
+    }
+    
 }
