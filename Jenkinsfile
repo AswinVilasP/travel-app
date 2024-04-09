@@ -24,6 +24,7 @@ pipeline {
 
         stage('Postgres DB images') {
             steps {
+                sh 'whoami
                 sh 'docker build -t postgresdb db/'
             }
         }
