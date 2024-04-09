@@ -24,19 +24,36 @@ pipeline {
 
         stage('Postgres DB images') {
             steps {
-                sh 'whoami'
-                sh 'docker build -t postgresdb db/'
+                sh 'docker build -t postgresdb:latest db/'
             }
         }
 
         stage('Django app image') {
             steps {
-                sh 'docker build -t django-app .'
+                sh 'docker build -t django-app:latest .'
             }
         }
-        stage('Docker image') {
+        stage('Docker images') {
             steps {
                 sh 'docker images -a'
+            }
+        }
+
+        stage('Docker network') {
+            steps {
+                sh 'docker create network web-network'
+            }
+        }
+
+        stage('Postgres container') {
+            steps {
+                sh 'docker run --name postgres --network web-network -p 5432 -d postgresdb:latest'
+            }
+        }
+
+        stage('Django container') {
+            steps {
+                sh 'docker run --name travel-app --network web-network -p 8000:8000 -d django-app:latest'
             }
         }
 
