@@ -24,7 +24,7 @@ pipeline {
 
         stage('docker compose') {
             steps {
-                sh 'docker-compose up --build -d'
+                sh 'docker-compose up --build'
             }
         }
 
@@ -37,6 +37,15 @@ pipeline {
         stage('Docker containers') {
             steps {
                 sh 'docker ps -a'
+            }
+        }
+
+        stage('Deleting containers & images') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker system prune -a'
+                sh 'docker ps -a'
+                sh 'docker images -a'
             }
         }
     } 
