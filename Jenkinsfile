@@ -9,4 +9,17 @@ pipeline {
             }
         }
     }
+
+    stage('Setup venv & requirements installation') {
+        steps {
+            // Create a virtual environment if it doesn't exist and install dependencies
+            sh '''
+            if [ ! -d "venv" ]; then
+                python3 -m venv venv
+            fi
+            . venv/bin/activate
+            pip install -r requirements.txt
+            '''
+        }
+    }
 }
