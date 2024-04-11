@@ -4,7 +4,7 @@
 TAG=$(date +'%d-%m-%Y-%H-%M')
 
 # Tag the docker image
-docker tag django:latest aswinvilasp/travel-app:$TAG
+docker tag travel-app:latest aswinvilasp/travel-app:$TAG
 
 # Output the generated tag
 echo "Generated Docker tag: $TAG"
