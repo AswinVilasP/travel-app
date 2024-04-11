@@ -4,6 +4,7 @@ networks:
     driver: bridge
 services:
   postgres:
+    image: postgresdb
     build: db/
     container_name: postgres
     volumes:
@@ -11,6 +12,7 @@ services:
     networks:
       - web-network
   django:
+    image: travel-app
     build: .
     container_name: travel-app
     ports:
