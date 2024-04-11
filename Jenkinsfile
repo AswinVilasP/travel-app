@@ -51,7 +51,7 @@ pipeline {
 
         stage('exporting Artifact') {
             steps {
-                sh 'ssh aswinvilasp@192.168.1.242 "rm -rf /home/aswinvilasp/DevOps/jenkins/*"'
+                sh 'ssh aswinvilasp@192.168.1.10 "rm -rf /home/aswinvilasp/DevOps/jenkins/*"'
                 sh 'scp -r ${WORKSPACE}/* aswinvilasp@192.168.1.242:/home/aswinvilasp/DevOps/jenkins'
             }
         }
@@ -59,7 +59,7 @@ pipeline {
         stage('SSH Commands execution') {
             steps {
                 sh '''
-                    ssh -T aswinvilasp@192.168.1.242 <<EOF
+                    ssh -T aswinvilasp@192.168.1.10 <<EOF
                         cd /home/aswinvilasp/DevOps/jenkins
                         docker compose up --build -d
                         exit
