@@ -25,7 +25,7 @@ SECRET_KEY = 'axx97&6%uwp!(*fg$q8s*%5honv!4i7#ce8o4#+m)e$9h)!#x0'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aswin.com','localhost']
+ALLOWED_HOSTS = ['aswin.com','localhost', '*']
 
 
 # Application definition
