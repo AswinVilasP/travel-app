@@ -68,16 +68,26 @@ pipeline {
         //     }
         // }
 
+        // stage('Tagging & pushing to dockerhub') {
+        //     steps {
+        //         sh '''
+        //             ssh -T aswinvilasp@192.168.134.189 <<EOF
+        //             cd /home/aswinvilasp/DevOps/jenkins
+        //             chmod +x tag.sh
+        //             ./tag.sh
+        //             exit
+        //             EOF
+        //         ''' 
+        //     }
+        // }
+
         stage('Tagging & pushing to dockerhub') {
             steps {
-                // sh '''
-                // ssh -T aswinvilasp@192.168.134.189 <<EOF
-                // cd /home/aswinvilasp/DevOps/jenkins
-                // chmod +x tag.sh
-                ./tag.sh
-                exit
-                    // EOF
-                // ''' 
+                sh '''
+                    ./tag.sh
+                    exit
+                    EOF
+                ''' 
             }
         }
     } 
