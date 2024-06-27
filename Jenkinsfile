@@ -84,6 +84,7 @@ pipeline {
         stage('Tagging & pushing to dockerhub') {
             steps {
                 sh '''
+                    chmod +x tag.sh
                     ./tag.sh
                     exit
                     EOF
