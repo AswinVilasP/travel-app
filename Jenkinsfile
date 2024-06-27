@@ -49,35 +49,35 @@ pipeline {
             }
         }
 
-        stage('exporting Artifact') {
-            steps {
-                sh 'ssh aswinvilasp@192.168.134.189 "rm -rf /home/aswinvilasp/DevOps/jenkins/*"'
-                sh 'scp -r ${WORKSPACE}/* aswinvilasp@192.168.1.242:/home/aswinvilasp/DevOps/jenkins'
-            }
-        }
+        // stage('exporting Artifact') {
+        //     steps {
+        //         sh 'ssh aswinvilasp@192.168.134.189 "rm -rf /home/aswinvilasp/DevOps/jenkins/*"'
+        //         sh 'scp -r ${WORKSPACE}/* aswinvilasp@192.168.1.242:/home/aswinvilasp/DevOps/jenkins'
+        //     }
+        // }
 
-        stage('SSH Commands execution') {
-            steps {
-                sh '''
-                    ssh -T aswinvilasp@192.168.134.189 <<EOF
-                        cd /home/aswinvilasp/DevOps/jenkins
-                        docker compose up --build -d
-                        exit
-                    EOF
-                ''' 
-            }
-        }
+        // stage('SSH Commands execution') {
+        //     steps {
+        //         sh '''
+        //             ssh -T aswinvilasp@192.168.134.189 <<EOF
+        //                 cd /home/aswinvilasp/DevOps/jenkins
+        //                 docker compose up --build -d
+        //                 exit
+        //             EOF
+        //         ''' 
+        //     }
+        // }
 
         stage('Tagging & pushing to dockerhub') {
             steps {
-                sh '''
-                    ssh -T aswinvilasp@192.168.134.189 <<EOF
-                    cd /home/aswinvilasp/DevOps/jenkins
-                    chmod +x tag.sh
-                    ./tag.sh
-                    exit
-                    EOF
-                ''' 
+                // sh '''
+                // ssh -T aswinvilasp@192.168.134.189 <<EOF
+                // cd /home/aswinvilasp/DevOps/jenkins
+                // chmod +x tag.sh
+                ./tag.sh
+                exit
+                    // EOF
+                // ''' 
             }
         }
     } 
