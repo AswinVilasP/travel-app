@@ -43,9 +43,9 @@ pipeline {
         stage('Deleting containers & images') {
             steps {
                 sh 'docker compose down'
-                sh 'docker system prune -af'
-                sh 'docker ps -a'
-                sh 'docker images -a'
+                // sh 'docker system prune -af'
+                // sh 'docker ps -a'
+                // sh 'docker images -a'
             }
         }
 
